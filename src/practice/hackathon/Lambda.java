@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 public class Lambda {
 
     public static void example() {
+        Runnable r = () -> {};
+        new Thread(r).start();
         Predicate<Integer> agePredicate = age -> age>30;
         Function<String, Integer> countWords = String::length;
         List<Integer> validAges = Stream.of(30,40,10,20, 50)
@@ -17,8 +19,11 @@ public class Lambda {
         List<Integer> lengthOfWords = Stream.of("Rahul", "Rohan", "Rakesh")
                 .map(countWords)
                 .collect(Collectors.toList());
+        var test = Stream.of("Rahul", "Rohan", "Rakesh")
+                        .collect(Collectors.toMap(it -> it, it -> it.length()));
 
         System.out.println(validAges);
         System.out.println(lengthOfWords);
+        System.out.println(test);
     }
 }

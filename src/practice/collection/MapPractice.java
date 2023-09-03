@@ -110,12 +110,12 @@ class Student {
     @Override
     public boolean equals(Object obj) {
         Student student = (Student) obj;
-        return /*student.roll == this.roll && */student.name.equals(this.name);
+        return student.roll == this.roll /*&& student.name.equals(this.name)*/;
     }
 
     @Override
     public int hashCode() {
-        return (this.roll + "" /*+ this.name*/).hashCode();
+        return (this.roll + "" + this.name).hashCode();
     }
 
     @Override

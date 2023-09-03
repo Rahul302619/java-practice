@@ -44,7 +44,7 @@ public class Java8Stream {
                 .skip(3)
                 .collect(toList());
 
-        //limit take input as integert
+        //limit take input as integer
         var limitUpto3 = getEmployees()
                 .stream()
                 .limit(3)

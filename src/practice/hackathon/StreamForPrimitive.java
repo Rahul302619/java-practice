@@ -2,8 +2,10 @@ package practice.hackathon;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamForPrimitive {
     public static void example() {
@@ -22,6 +24,7 @@ public class StreamForPrimitive {
         for (char c : charArr) {
             listArray.add(c);
         }
+
         var ascending = listArray
                 .stream()
                 .sorted()
