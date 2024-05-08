@@ -9,11 +9,11 @@ public class MapPractice {
         /*Map.of method don't allow duplicates, throw error IllegalArgumentException
         Map<Integer, String> map1 = Map.of(1, "Rahul", 2, "Rohan", 3, "Roushan", 1, "Rahul");*/
 
-        Map<String, String> map1 = new HashMap<>();
-        map1.put("Rahul", "Rahul");
+        Map<String, String> map1 = new HashMap<>(); //orders are not preserved
+        System.out.println(map1.put("Rahul", "Rahul"));//return null because key is not present in the map
         map1.put("Rohan", "Rohan");
         map1.put("Roushan", "Roushan");
-        map1.put("Rahul", "Vinod");
+        System.out.println(map1.put("Rahul", "Vinod")); // return added key because key is already present in the map and replace the old value with new one
         map1.put(null, "Vivek");
         map1.put(null, "Vivek1");
         map1.put("Suraj", null);
@@ -70,6 +70,15 @@ public class MapPractice {
         map1.put(student3, "Rakesh");
 
         System.out.println(map1);
+
+        /*Not allowed because Student haven't implemented Comparable
+        Map<Student, String> map3 = new TreeMap<>();
+        map3.put(student, "Rahul");
+        map3.put(student1, "Rohan");
+        map3.put(student2, "Roushan");
+        map3.put(student3, "Vinod");
+
+        System.out.println(map3);*/
 
         /*Equal based on id && hash based on id and name
         {Student{roll=1, name='Rahul'}=Rahul, Student{roll=1, name='Rahul Kumar'}=Roushan, Student{roll=2, name='Rohan'}=Rohan}*/

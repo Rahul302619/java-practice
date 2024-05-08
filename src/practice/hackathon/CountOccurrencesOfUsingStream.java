@@ -1,16 +1,12 @@
 package practice.hackathon;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CountOccurrencesOfUsingStream {
 
     public static void allCharacters(String word) {
-
         var occurrenceOfCharacters = word
                 .chars()
                 .mapToObj(c -> (char) c)
@@ -24,6 +20,18 @@ public class CountOccurrencesOfUsingStream {
                 .get();
 
         System.out.println(max);
+
+        occurrenceOfCharacters
+                .forEach((k,v) -> System.out.println(k + "-" + v));
+
+        var joinChar = occurrenceOfCharacters
+                .entrySet()
+                .stream()
+                .sorted((c1,c2) -> c2.getValue().compareTo(c1.getValue()))
+                .map(entry -> entry.getKey().toString() + entry.getValue())
+                .collect(Collectors.joining());
+
+        System.out.println(joinChar);
     }
 
     public static void words(String sentence) {

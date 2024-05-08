@@ -27,10 +27,10 @@ public class PracticeMain {
 
         Lambda.example();*/
 
-        CountOccurrencesOfUsingStream.words("my name is rahul my rahul");
-        CountOccurrencesOfUsingStream.allCharacters("elephant");
+        /*CountOccurrencesOfUsingStream.words("my name is rahul my rahul");*/
+        /*CountOccurrencesOfUsingStream.allCharacters("elephant");*/
 
-        StreamForPrimitive.example();
+/*        StreamForPrimitive.example();*/
 
         Java8Stream.example();
     }

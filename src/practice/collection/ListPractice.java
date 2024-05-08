@@ -10,7 +10,7 @@ public class ListPractice {
         List<String> name = List.of("Rahul","Aakash", "Vinod", "Rahul");
 
         List<String> name1 = new ArrayList<>();
-        name1.add("Rahul");
+        name1.add("Rahul"); // add method returns bollen to indicate value get added or not
         name1.add("Aakash");
         name1.add("Vinod");
         name1.add("Rahul");

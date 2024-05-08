@@ -1,12 +1,12 @@
 package practice.hackathon;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
-import static java.util.stream.Collectors.partitioningBy;
 
 public class Java8Stream {
 
@@ -88,6 +88,36 @@ public class Java8Stream {
                 .stream()
                 .collect(groupingBy(Employee::getName, mapping(Employee::getId, Collectors.toList())));
 
+        var groupByNameAndValueAsSalary = getEmployees()
+                .stream()
+                .collect(groupingBy(Employee::getName, mapping(Employee::getSalary, Collectors.toList())));
+
+        var sumOfSalaryUsingReduce = getEmployees()
+                .stream()
+                .map(Employee::getSalary)
+                .reduce(0.0,(acc, salary) -> acc + salary);
+
+        var sumOfSalary = getEmployees()
+                .stream()
+                .mapToDouble(Employee::getSalary)
+                .sum();
+
+        var sumOfSalaryByName = getEmployees()
+                .stream()
+                .collect(groupingBy(Employee::getName, summingDouble(Employee::getSalary)));
+
+        var sortedSalary = getEmployees()
+                .stream()
+                .sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
+                .sorted((e1, e2) -> e2.getSalary().compareTo(e1.getSalary()))
+                .collect(toList());
+
+        var correctSortedSalary = getEmployees()
+                .stream()
+                .sorted(Comparator.comparing(Employee::getName)
+                        .thenComparing(Comparator.comparing(Employee::getSalary).reversed()))
+                .collect(toList());
+
         System.out.println("*******groupingBy(name, list)***********");
         System.out.println(groupByName);
         System.out.println("*******joining***********");
@@ -98,17 +128,29 @@ public class Java8Stream {
         System.out.println(partitioningByName);
         System.out.println("*******mapping***********");
         System.out.println(groupByNameAndValueAsId);
+        System.out.println("*******mapping2***********");
+        System.out.println(groupByNameAndValueAsSalary);
+        System.out.println("*******reduce***********");
+        System.out.println(sumOfSalaryUsingReduce);
+        System.out.println("*******sum***********");
+        System.out.println(sumOfSalary);
+        System.out.println("*******summingDouble***********");
+        System.out.println(sumOfSalaryByName);
+        System.out.println("*******sortedSalary***********");
+        System.out.println(sortedSalary);
+        System.out.println("*******correctSortedSalary***********");
+        System.out.println(correctSortedSalary);
     }
 
     private static List<Employee> getEmployees() {
         return List.of(
-                new Employee(1L, "Rahul Singh"),
-                new Employee(2L, "Rohan Singh"),
-                new Employee(3L, "Roshan Singh"),
-                new Employee(4L, "Sweta Singh"),
-                new Employee(5L, "Preethvi Singh"),
-                new Employee(6L, "Rahul Singh"),
-                new Employee(7L, "Rohan Singh")
+                new Employee(1L, "Rahul Singh", 10000.0),
+                new Employee(2L, "Rohan Singh", 20000.0),
+                new Employee(3L, "Roshan Singh", 30000.0),
+                new Employee(4L, "Sweta Singh", 40000.0),
+                new Employee(5L, "Preethvi Singh", 7000.0),
+                new Employee(6L, "Rahul Singh", 5000.0),
+                new Employee(7L, "Rohan Singh", 6000.0)
         );
     }
 }
@@ -116,37 +158,49 @@ public class Java8Stream {
 class Employee{
     private Long id;
     private String name;
+    private Double salary;
 
-    public Employee(Long id, String name) {
+    public Employee(Long id, String name, Double salary) {
         this.id = id;
         this.name = name;
+        this.salary = salary;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
     @Override
-    public boolean equals(Object obj) {
-        Employee emp = (Employee) obj;
-        return Objects.equals(emp.id, id) && emp.name.equals(name);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(id, employee.id) && Objects.equals(name, employee.name) && Objects.equals(salary, employee.salary);
     }
 
     @Override
     public int hashCode() {
-        return (id.toString() + name).hashCode();
+        return Objects.hash(id, name, salary);
     }
 
     @Override
@@ -154,6 +208,7 @@ class Employee{
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", salary=" + salary +
                 '}';
     }
 }

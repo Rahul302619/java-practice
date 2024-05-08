@@ -9,7 +9,9 @@ import java.util.stream.Stream;
 public class Lambda {
 
     public static void example() {
-        Runnable r = () -> {};
+        Runnable r = () -> {
+            System.out.println("Thread started!");
+        };
         new Thread(r).start();
         Predicate<Integer> agePredicate = age -> age>30;
         Function<String, Integer> countWords = String::length;

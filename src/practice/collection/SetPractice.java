@@ -7,12 +7,12 @@ public class SetPractice {
         /*Set.of method don't allow duplicates, throw error IllegalArgumentException*/
         //Set name = Set.of("Rahul","Aakash", "Vinod", "Rahul");
 
-        Set<String> name1 = new HashSet<>(); // Created HashMap Internally and added value as key
-        name1.add(null);
+        Set<String> name1 = new HashSet<>(); // Created HashMap Internally and added value as key and orders are not preserved
+        System.out.println(name1.add(null));
         name1.add("Rahul");
         name1.add("Aakash");
         name1.add("Vinod");
-        name1.add("Rahul");
+        System.out.println(name1.add("Rahul"));// return false because it's a duplicate and not get added
         //name1.add(1,"Lokesh"); //not allowed
 
         Set<String> name2 = new LinkedHashSet<>(); // Created LinkedHashMap Internally and added value as key
@@ -20,7 +20,7 @@ public class SetPractice {
         name2.add("Rahul");
         name2.add("Aakash");
         name2.add("Vinod");
-        name2.add("Rahul");
+        name2.add("Rahul");// return false because it's a duplicate and not get added
         //name2.add(1,"Lokesh"); //not allowed
 
         Set<String> name3 = new TreeSet<>(); // Created TreeMap Internally and added value as key
