@@ -1,4 +1,4 @@
-package practice.hackathon;
+package hackathon;
 
 public class LongestFreeSpaceFinder {
     public static int findLongestFreeSpace(String sequence) {

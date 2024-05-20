@@ -1,4 +1,4 @@
-package practice.hackathon;
+package hackathon;
 
 import java.util.HashMap;
 import java.util.List;

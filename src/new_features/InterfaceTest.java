@@ -1,4 +1,4 @@
-package practice.new_features;
+package new_features;
 
 public class InterfaceTest {
     public static void main(String[] args) {

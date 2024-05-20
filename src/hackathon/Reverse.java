@@ -1,4 +1,4 @@
-package practice.hackathon;
+package hackathon;
 
 public class Reverse {
     public static String word(String word) {

@@ -1,4 +1,4 @@
-package practice.new_features;
+package new_features;
 
 public class SealedClassTest {
 
