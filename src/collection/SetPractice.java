@@ -10,11 +10,6 @@ public class SetPractice {
 
     public static void setExample() {
 
-        /*
-         * Default method inside List interface -> spliterator(..)
-         * Static method inside List interface -> Set.of(..)
-         * */
-
         /*Set.of method don't allow duplicates, throw error IllegalArgumentException*/
         //Set name = Set.of("Rahul","Aakash", "Vinod", "Rahul");
 

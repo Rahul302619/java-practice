@@ -53,9 +53,7 @@ public class FindRepetitiveAndNonRepetitive {
                 .stream()
                 .collect(Collectors.toMap(
                         String::length,
-                        l -> l,
-                        (l1,l2) -> l2, // in case of duplicate key took the latest one(l2)
-                        HashMap::new
+                        l -> l
                 ));
     }
 
@@ -67,7 +65,8 @@ public class FindRepetitiveAndNonRepetitive {
             int index = str.indexOf(c);
             int lastIndex = str.lastIndexOf(c);
             if (index != lastIndex) { // if we make it == than we will get non-repetitive
-                charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+//                charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+                charCount.merge(c,1, (k1,k2) -> k1+k2);
             }
         }
         return charCount;

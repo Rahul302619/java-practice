@@ -6,6 +6,11 @@ import java.time.format.DateTimeFormatter;
 public class DateTimeExample {
 
     public static void main(String[] args) {
+        /*
+        * Previous Java.util.Date API is mutable and hence not thread safe
+        * that's the main reason java.time api is introduce.
+        * Also Date api provide both date and time but new API have seperate method for both.
+         */
         LocalDate date = convertStringIntoDate("12/09/24", "dd/MM/yy");
         System.out.println(date);
         compareDate();

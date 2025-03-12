@@ -21,7 +21,7 @@ public class SortListOfNameBySecondChar {
     private static List<String> sortListOfNameBySecondChar(List<String> listOfName) {
         return listOfName
                 .stream()
-                .sorted((n1,n2) -> n2.charAt(1) - n1.charAt(1))
+                .sorted((n1,n2) -> n1.charAt(1) - n2.charAt(1))
                 .toList();
     }
 

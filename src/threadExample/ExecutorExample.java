@@ -13,14 +13,16 @@ public class ExecutorExample {
 
     private static void testExecutor() {
         ExecutorService executor = Executors.newFixedThreadPool(5); // Here, 5 is the number of threads in the pool
-
+        var runnable = new RunnableExample();
+        var callable = new CallableExample();
         // Submit tasks to the thread pool
         for (int i = 0; i < 10; i++) {
             // Submitting tasks using lambda expression
-            executor.submit(new RunnableExample());
-            Future<Integer> future = executor.submit(new CallableExample());
+            executor.submit(runnable);
+            Future<Integer> future = executor.submit(callable);
+            Future<Integer> future1 = executor.submit(callable);
             try {
-                System.out.println("Task method:" + future.get());
+                System.out.println("Task method:" + future.get() + "---" + future1.get());
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
@@ -55,7 +57,7 @@ public class ExecutorExample {
 
         BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(100); // Create a bounded blocking queue to hold tasks
 
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS, workQueue);
+        ExecutorService threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS, workQueue);
 
         threadPoolExecutor.submit(new RunnableExample());
         threadPoolExecutor.submit(new CallableExample());
@@ -76,9 +78,12 @@ class RunnableExample implements Runnable{
 
 class CallableExample implements Callable<Integer> {
 
+    volatile int count = 0;
+
     @Override
     public Integer call() throws Exception {
+        count++;
         System.out.println("Callable Test, Thread Name: " + Thread.currentThread().getName());
-        return 10;
+        return count;
     }
 }

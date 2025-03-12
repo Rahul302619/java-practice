@@ -12,11 +12,6 @@ public class MapPractice {
 
     public static void mapExample() {
 
-        /*
-         * Default method inside List interface -> getOrDefault(..), putIfAbsent(..)
-         * Static method inside List interface -> Map.of(..), ofEntries
-         * */
-
         Map<Integer, String> map = Map.of(1, "Rahul", 2, "Rohan", 3, "Roushan", 4, "Rahul");
 
         /*Map.of method don't allow duplicates, throw error IllegalArgumentException
@@ -136,7 +131,7 @@ class Student {
     @Override
     public boolean equals(Object obj) {
         Student student = (Student) obj;
-        return true/*&& student.name.equals(this.name)*/;
+        return true/*&& Objects.equals(student.name, this.name)*/;
     }
 
 //    @Override

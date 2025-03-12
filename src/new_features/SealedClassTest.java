@@ -8,6 +8,10 @@ public class SealedClassTest {
             """;
 
     public static void main(String[] args) {
+        /*
+        * For implementing sealed classes child must be record or final class
+        * so that other classes can't override the child class behaviour
+         */
         System.out.println(textBlock);
 
         Bank sbi = new Sbi(10);
@@ -23,7 +27,7 @@ public class SealedClassTest {
     }
 }
 
-sealed interface Bank permits Sbi, Hdfc {
+sealed interface Bank permits Sbi, Hdfc, Axis {
 
     void provideLoan();
 
@@ -51,3 +55,15 @@ record Hdfc(String loanName) implements Bank {
         System.out.println("Type of loan provided by HDFC : " + loanName);
     }
 }
+
+final class Axis implements Bank {
+
+    @Override
+    public void provideLoan() {
+        System.out.println("Axis");
+    }
+}
+
+sealed class Animal permits Dog, Cat {}
+final class Dog extends Animal {}
+final class Cat extends Animal {}

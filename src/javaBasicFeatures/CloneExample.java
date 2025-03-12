@@ -7,6 +7,10 @@ public class CloneExample {
         deepCloneExample();
 
         /*
+        * Clone method is present inside Object class but still without overriding that method
+        *  you can not call that it will give compile time error because it is protected native
+        * Signature -> protected native Object clone() throws CloneNotSupportedException;
+        *
         * The way we can create clone object
         * 1) By implementing Cloneable which will create shallow copy(Since it create shallow copy so
         *  if we not implement cloneable to the child class than also it will work fine

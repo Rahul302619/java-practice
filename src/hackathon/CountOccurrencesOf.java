@@ -17,17 +17,16 @@ public class CountOccurrencesOf {
 
     private static int count(String word, char character) {
         int count = 0;
-        for(int i=0; i<word.length(); i++) {
-            if(word.charAt(i) == character) count++;
+        for(char c : word.toCharArray()) {
+            if(c == character) count++;
         }
         return count;
     }
 
     public static void allCharactersWithSingleLoop(String word) {
         Map<Character, Integer> occurrencesOfAllCharacters = new HashMap<>();
-        for(int i=0; i<word.length(); i++) {
-            if(!occurrencesOfAllCharacters.containsKey(word.charAt(i))) occurrencesOfAllCharacters.put(word.charAt(i), 1);
-            else occurrencesOfAllCharacters.put(word.charAt(i), occurrencesOfAllCharacters.get(word.charAt(i)) + 1);
+        for(char c: word.toCharArray()) {
+            occurrencesOfAllCharacters.merge(c, 1, (k1,k2) -> k1+k2);
         }
         System.out.println(occurrencesOfAllCharacters);
     }

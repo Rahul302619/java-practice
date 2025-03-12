@@ -12,10 +12,7 @@ public class ListPractice {
     }
 
     public static void listExample() {
-        /*
-        * Default method inside List interface -> sort(..)
-        * Static method inside List interface -> List.of(..)
-        * */
+
         List<String> name = List.of("Rahul","Aakash", "Vinod", "Rahul");
         //name.add("test"); //It will give runtime exception
 

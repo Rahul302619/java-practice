@@ -4,6 +4,10 @@ public class ThreadAndRunnable {
 
     public static void main(String[] args) {
         /*
+        * While extending Thread class we will not get compile time error
+        * if we are not overriding run method but if we implement Runnable
+        * we will get compile time error for not overriding run method.
+        *
         * Thread : Can't execute same instance of thread multiple time
         * Runnable : Can execute same instance of runnable multiple time by passing it to diff thread
         *
@@ -17,6 +21,7 @@ public class ThreadAndRunnable {
     }
 
     private static void runExampleThreadMultipleTime() {
+        System.out.println("----------Thread class----------");
         ExampleThread exampleThread = new ExampleThread();
         exampleThread.start();
         try {
@@ -27,6 +32,7 @@ public class ThreadAndRunnable {
     }
 
     private static void runExampleRunnableMultipleTime() {
+        System.out.println("----------Runnable class----------");
         ExampleRunnable exampleRunnable = new ExampleRunnable();
 
         Thread thread = new Thread(exampleRunnable);
@@ -51,6 +57,7 @@ class ExampleRunnable implements Runnable {
     *  across different threads than in that case we can use volatile.
     * */
     volatile int count = 0;
+
     @Override
     public void run() {
         count += 1;
