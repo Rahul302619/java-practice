@@ -27,7 +27,7 @@ public class FindRepetitiveAndNonRepetitive {
                 .entrySet()
                 .stream().filter(c -> c.getValue() > 1)
                 .collect(Collectors.toMap(
-                        Map.Entry::getKey,
+                        e -> e.getKey(),
                         Map.Entry::getValue,
                         (c1,c2) -> c1,
                         LinkedHashMap::new
@@ -54,7 +54,7 @@ public class FindRepetitiveAndNonRepetitive {
                 .collect(Collectors.toMap(
                         String::length,
                         l -> l,
-                        (l1,l2) -> l2, // in case of duplicate key took the latest own(l2)
+                        (l1,l2) -> l2, // in case of duplicate key took the latest one(l2)
                         HashMap::new
                 ));
     }

@@ -27,7 +27,7 @@ public class BalancedStringExample {
             }
         }
 
-        return  stack.isEmpty();
+        return stack.isEmpty();
     }
 
 

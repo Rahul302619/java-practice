@@ -3,7 +3,18 @@ package collection;
 import java.util.*;
 
 public class SetPractice {
+
+    public static void main(String[] args) {
+        setExample();
+    }
+
     public static void setExample() {
+
+        /*
+         * Default method inside List interface -> spliterator(..)
+         * Static method inside List interface -> Set.of(..)
+         * */
+
         /*Set.of method don't allow duplicates, throw error IllegalArgumentException*/
         //Set name = Set.of("Rahul","Aakash", "Vinod", "Rahul");
 
@@ -13,7 +24,7 @@ public class SetPractice {
         name1.add("Aakash");
         name1.add("Vinod");
         System.out.println(name1.add("Rahul"));// return false because it's a duplicate and not get added
-        //name1.add(1,"Lokesh"); //not allowed
+        //name1.add(1,"Lokesh"); and name1.set(3, "Rohan"); //not allowed
 
         Set<String> name2 = new LinkedHashSet<>(); // Created LinkedHashMap Internally and added value as key
         name2.add(null);
@@ -28,7 +39,7 @@ public class SetPractice {
         name3.add("Aakash");
         name3.add("Vinod");
         name3.add("Rahul");
-        //name3.add(null); // not allowed
+//        name3.add(null); // not allowed
 
         Set<String> name4 = new TreeSet<>(Comparator.nullsLast(Comparator.reverseOrder()));
         name4.add("Rahul");

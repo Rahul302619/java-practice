@@ -25,6 +25,7 @@ public class ReverseStringExample {
 
     private static String reverseSentence(String str) {
         return Arrays.stream(str.split(" "))
+                //.map(ReverseStringExample::reverseWord)
                 .reduce((c1, c2) -> c2 + " " + c1)
                 .orElse("");
     }

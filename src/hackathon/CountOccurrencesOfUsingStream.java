@@ -17,7 +17,7 @@ public class CountOccurrencesOfUsingStream {
                 .entrySet()
                 .stream()
                 .max(Map.Entry.comparingByValue())
-                .get();
+                .orElse(null);
 
         System.out.println(max);
 

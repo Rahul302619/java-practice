@@ -5,7 +5,7 @@ public class InterfaceAndAbstractExample {
     public static void main(String[] args) {
         /*
         * 1) Abstract class have constructor and mutable member variable
-        * 2) whereas interface don't have constructor and only support final and immuatable(or constant) member variable
+        * 2) Whereas interface don't have constructor and only support final and immuatable(or constant) member variable
         * 3) Also by using interface we can implement multiple interfaces but only one abstract class
         * 4) If we want mutable member variable than we can go with abstract class or else always go
         *  with interface from java8 onward.
@@ -22,12 +22,21 @@ public class InterfaceAndAbstractExample {
             }
         };
 
+        // It will give type compile time error
+/*        HdfcBank bank12 = new Bank("Test"){
+            @Override
+            public void abstractMethod() {
+                System.out.println("I'm an abstract method");
+            }
+        };*/
+
         bank.concreteMethod();
         bank.abstractMethod();
 
         Bank hdfc = new HdfcBank();
         hdfc.concreteMethod();
         hdfc.abstractMethod();
+        //hdfc.hdfcMethod() // child class method not present for parent ref
 
         Bank sbi = new SbiBank("Sbi");
         sbi.concreteMethod();
@@ -84,7 +93,7 @@ class HdfcBank extends Bank {
 
     @Override
     public void abstractMethod() {
-        System.out.println("Hdfc bank abstract");
+        System.out.println("Hdfc bank abstract" + super.getBankName());
     }
 
     public void hdfcMethod() {

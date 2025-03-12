@@ -1,12 +1,18 @@
 package hackathon;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Lambda {
+
+    public static void main(String[] args) {
+        example();
+    }
 
     public static void example() {
         Runnable r = () -> {
@@ -21,11 +27,14 @@ public class Lambda {
         List<Integer> lengthOfWords = Stream.of("Rahul", "Rohan", "Rakesh")
                 .map(countWords)
                 .collect(Collectors.toList());
-        var test = Stream.of("Rahul", "Rohan", "Rakesh")
-                        .collect(Collectors.toMap(it -> it, it -> it.length()));
+
+        System.out.println("----------------");
+        IntStream.range(0,20).forEach(System.out::print);
+        System.out.println("----------------");
+        IntStream.rangeClosed(0,20).forEach(System.out::print);
+        System.out.println("----------------");
 
         System.out.println(validAges);
         System.out.println(lengthOfWords);
-        System.out.println(test);
     }
 }

@@ -16,6 +16,17 @@ public class Java8Stream {
     }
 
     private static void map() {
+        Stream.of("Rahul", "Rohan", "Rakesh")
+                .collect(Collectors.toMap(it -> it, it -> it.length()));
+
+        Stream.of("Rahul", "Rohan", "Rakesh")
+                .sorted(Comparator.reverseOrder())
+                .toList();
+
+
+        Stream.of(30,40,10,20, 50)
+                .forEach(System.out::print);
+
         var employeesName = getEmployees()
                 .stream()
                 .filter(emp -> emp.getName().startsWith("R"))
@@ -71,7 +82,7 @@ public class Java8Stream {
         var joinAllNameByComma = getEmployees()
                 .stream()
                 .map(Employee::getName)
-                .collect(joining(","));
+                .collect(Collectors.joining(","));
 
         //groupingBy take 2 input first one is Function and 2nd one is Collector
         var countNumberOfOccurrenceByName = getEmployees()
@@ -95,7 +106,7 @@ public class Java8Stream {
         var sumOfSalaryUsingReduce = getEmployees()
                 .stream()
                 .map(Employee::getSalary)
-                .reduce(0.0,(acc, salary) -> acc + salary);
+                .reduce((acc, salary) -> acc + salary);
 
         var sumOfSalary = getEmployees()
                 .stream()
@@ -104,7 +115,7 @@ public class Java8Stream {
 
         var sumOfSalaryByName = getEmployees()
                 .stream()
-                .collect(groupingBy(Employee::getName, summingDouble(Employee::getSalary)));
+                .collect(Collectors.groupingBy(Employee::getName, summingDouble(Employee::getSalary)));
 
         var sortedSalary = getEmployees()
                 .stream()

@@ -3,17 +3,30 @@ package collection;
 import java.util.*;
 
 public class MapPractice {
+
+    public static void main(String[] args) {
+//        mapExample();
+        mapWithCustomClassExample();
+
+    }
+
     public static void mapExample() {
+
+        /*
+         * Default method inside List interface -> getOrDefault(..), putIfAbsent(..)
+         * Static method inside List interface -> Map.of(..), ofEntries
+         * */
+
         Map<Integer, String> map = Map.of(1, "Rahul", 2, "Rohan", 3, "Roushan", 4, "Rahul");
 
         /*Map.of method don't allow duplicates, throw error IllegalArgumentException
         Map<Integer, String> map1 = Map.of(1, "Rahul", 2, "Rohan", 3, "Roushan", 1, "Rahul");*/
 
-        Map<String, String> map1 = new HashMap<>(); //orders are not preserved
-        System.out.println(map1.put("Rahul", "Rahul"));//return null because key is not present in the map
+        HashMap<String, String> map1 = new HashMap<>(); //orders are not preserved
+        System.out.println(map1.put("Rahul", "Rohan"));//return null because key is not present in the map
         map1.put("Rohan", "Rohan");
         map1.put("Roushan", "Roushan");
-        System.out.println(map1.put("Rahul", "Vinod")); // return added key because key is already present in the map and replace the old value with new one
+        System.out.println(map1.put("Rahul", "Vinod")); // return old value because key is already present in the map and replace the old value with new one
         map1.put(null, "Vivek");
         map1.put(null, "Vivek1");
         map1.put("Suraj", null);
@@ -37,6 +50,9 @@ public class MapPractice {
         //map3.put(null, "Vivek"); // not allow
         map3.put("Suraj", null);
         map3.put("Suresh", null);
+
+        var treeMap = new TreeMap<String, String>();
+        treeMap.put(null, "Rahul");// Cannot invoke "java.lang.Comparable.compareTo(Object)" because "k1" is null
 
         Map<String, String> map4 = new Hashtable<>();
         map4.put("Rahul", "Rahul");
@@ -70,6 +86,7 @@ public class MapPractice {
         map1.put(student3, "Rakesh");
 
         System.out.println(map1);
+        System.out.println(map1.get(student));
 
         /*Not allowed because Student haven't implemented Comparable
         Map<Student, String> map3 = new TreeMap<>();
@@ -119,13 +136,13 @@ class Student {
     @Override
     public boolean equals(Object obj) {
         Student student = (Student) obj;
-        return student.roll == this.roll /*&& student.name.equals(this.name)*/;
+        return true/*&& student.name.equals(this.name)*/;
     }
 
-    @Override
-    public int hashCode() {
-        return (this.roll + "" + this.name).hashCode();
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(this.roll);
+//    }
 
     @Override
     public String toString() {

@@ -15,7 +15,6 @@ public class MinimumNumberOfCoinsRequired {
 
     private static Map<Integer, Integer> minimumNumberOfCoinsRequires(int[] coinArray, int amount) {
         Map<Integer, Integer> coinMap = new HashMap<>();
-
         var sortedArray = Arrays.stream(coinArray)
                 .boxed()
                 .sorted(Comparator.reverseOrder())

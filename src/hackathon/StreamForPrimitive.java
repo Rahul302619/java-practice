@@ -1,15 +1,14 @@
 package hackathon;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamForPrimitive {
     public static void example() {
         int[] arr = { 1, 2, 3, 4, 5 };
+
+        Arrays.sort(arr);
 
         var descending = Arrays.stream(arr)
                 .boxed()
